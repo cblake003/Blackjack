@@ -5,7 +5,7 @@ const originalDeck = buildOriginalDeck();
 
 /*----- state variables -----*/
 
-let scores {
+let scores = {
 // player, dealer, and tie/push variables need to be established. Put in object so we can access via key and value and it'll be easier to read
     p: 0,
     d: 0,
