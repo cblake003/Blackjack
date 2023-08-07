@@ -60,9 +60,10 @@ document.querySelector('button').addEventListener('click', renderNewShuffledDeck
         render();
     }
     
-    render () {
+    function render() {
         renderOriginalDeck();
         renderShuffledDeck();
+        renderScores();
         renderResults();
         handleChoice();
         getwinner();
@@ -95,14 +96,21 @@ function renderOriginalDeck() {
         };
     }:
 
-    renderResults () {
+    function renderScores() {
+        for (let key in scores) {
+            const scoreEl = document.getElementById(`${key}-score`);
+            scoreEl.innerText = scores[key];
+        }
+    }
+
+    function renderResults() {
 
     }
 
-    handleChoice() {
+    function handleChoice() {
 
     }
 
-    getWinner() {
+   function getWinner() {
 
     }
