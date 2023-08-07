@@ -2,6 +2,14 @@
 const suits = ['s', 'c', 'd', 'h']
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'Q', 'K', 'A']
 const originalDeck = buildOriginalDeck();
+const CARD_LOOKUP = {
+    // Need this to pull up images of cards for renderResults
+    clubs:`imgs/clubs.png`,
+    diamonds: `imgs/diamonds.png`,
+    hearts: `imgs/hearts.png`,
+    jokers: `imgs/jokers.png`,
+    spades: `imgs/spades.png`
+}
 
 /*----- state variables -----*/
 
@@ -19,8 +27,8 @@ let results = {
 // Need to set up a wireframe with what they're starting with. Need to figure out how to calculate results here.
 // I want to have the player results be 2 cards with each suit and value, same for computer
     //Can I just create a result of card1 + card2 for the results? Maybe I can make a randomCardPull const that combines the suits and ranks? 
-    p: suit['h'],rank[Q] + suit['d'], rank[A]
-    d: suit['c'],rank['10'] + suit['s'], rank[09]
+    p: suit[h],rank[Q] + suit[d], rank[A]
+    d: suit[c],rank[10] + suit[s], rank[09]
 // Should I make separate ranks for 10 and face cards? 
 }
 
@@ -37,6 +45,8 @@ let shuffleDeck
 
 	/*----- cached elements  -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
+const pResultEl = document.getElementById('p-result');
+const dResultEl = document.getElementById('d-result');
 
 	/*----- event listeners -----*/
 document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
@@ -104,7 +114,8 @@ function renderOriginalDeck() {
     }
 
     function renderResults() {
-
+        pResultEl.src = CARD_LOOKUP[results.p];
+        dResultEl.src = CARD_LOOKUP[results.d];
     }
 
     function handleChoice() {
