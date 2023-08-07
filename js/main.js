@@ -5,7 +5,7 @@ const originalDeck = buildOriginalDeck();
 
 /*----- state variables -----*/
 
-let SCORES {
+let scores {
 // player, dealer, and tie/push variables need to be established. Put in object so we can access via key and value and it'll be easier to read
     p: 0,
     d: 0,
@@ -46,8 +46,18 @@ document.querySelector('button').addEventListener('click', renderNewShuffledDeck
     init();
     
     function init() {
+        scores = {
+            p: 0,
+            d: 0,
+            t: 0
+        };
+        results = {
+            // trying to start player off with Blackjack when home screen loads
+            p: suit[h], rank[Q] + suit[d], rank[A];
+            d: suit[c],rank[10] + suit[s], rank[09]
+        }
+        outcome = 'p';
         render();
-        
     }
     
     render () {
