@@ -60,36 +60,19 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 300px;
 }
 
 #dcards {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 300px;
 }
 
-#playerCard1 {
-    height: 800px;
-    width: 600px;
-}
 
-#playerCard2 {
-    height: 800px;
-    width: 600px;
-    
-}
 
 button:hover {
     background-color: purple;
     color: lightpink;
-}
-
-#dealerCard1 {
-    height: 800px;
-    width: 600px;
-}
-
-#dealerCard2 {
-    height: 800px;
-    width: 600px;
 }
