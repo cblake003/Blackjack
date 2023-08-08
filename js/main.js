@@ -1,15 +1,18 @@
 /*----- constants -----*/
 const suits = ['s', 'c', 'd', 'h']
+
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'Q', 'K', 'A']
+
 const originalDeck = buildOriginalDeck();
-const CARD_LOOKUP = {
-    // Need this to pull up images of cards for renderResults
-    clubs:`imgs/clubs.png`,
-    diamonds: `imgs/diamonds.png`,
-    hearts: `imgs/hearts.png`,
-    jokers: `imgs/jokers.png`,
-    spades: `imgs/spades.png`
-}
+
+// const CARD_LOOKUP = {
+//     // Need this to pull up images of cards for renderResults
+//     clubs:`imgs/clubs.png`,
+//     diamonds: `imgs/diamonds.png`,
+//     hearts: `imgs/hearts.png`,
+//     jokers: `imgs/jokers.png`,
+//     spades: `imgs/spades.png`
+// };
 
 /*----- state variables -----*/
 
@@ -18,7 +21,7 @@ let scores = {
     p: 0,
     d: 0,
     t: 0
-}
+};
 
 // We now need to go with what the player ended up with and what the dealer ended up with
 // Calling this variable Results
@@ -30,18 +33,16 @@ let results = {
     p: suit[h],rank[Q] + suit[d], rank[A]
     d: suit[c],rank[10] + suit[s], rank[09]
 // Should I make separate ranks for 10 and face cards? 
-}
+};
 
 // This will be our winner variable, but let's call it Outcomes since there can be 5 outcomes in BJ
 // player wins, player wins w/ blackjack, dealer wins, dealer wins w/ BJ, or tie
-let outcome = 'p', 'pBJ', 'd', 'dBJ', 't'
+let outcome = 'p', 'pBJ', 'd', 'dBJ', 't';
 
 renderDeckInContainer(originalDeck, document.getElementById('original-deck-container'));
 
-let table
-let points
-let winner
-let shuffleDeck
+let winner;
+let shuffleDeck;
 
 	/*----- cached elements  -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
@@ -49,7 +50,9 @@ const pResultEl = document.getElementById('p-result');
 const dResultEl = document.getElementById('d-result');
 
 	/*----- event listeners -----*/
-document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
+// Only need this at the start of a new game so commenting out for now until can figure that out
+    // document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
+    document.querySelector('button').addEventListener('click', handleChoice)
 
 	/*----- functions -----*/
 
@@ -70,6 +73,7 @@ document.querySelector('button').addEventListener('click', renderNewShuffledDeck
         render();
     }
     
+    // transfer all state to the DOM so users can visualize it
     function render() {
         renderOriginalDeck();
         renderShuffledDeck();
@@ -118,10 +122,32 @@ function renderOriginalDeck() {
         dResultEl.src = CARD_LOOKUP[results.d];
     }
 
-    function handleChoice() {
-
+    // in response to user interaction, player made a move -
+        // update all impacted state
+        // must add another card in player's hand if they click Hit
+        // call render after so it'll transfer that state to the DOM
+    function handleChoice(evt) {
+        // guard!
+        if (evt.target.tagName !== 'BUTTON') return;
+        results.p = getRandomCards();
+        results.d = getRandomCards();
     }
 
    function getWinner() {
 
+    }
+
+    function getRandomCards() {
+      getRandomSuit()
+      getRandomRank()
+    }
+
+    function getRandomSuit() {
+        const rndIdx = Math.floor(Math.random() * suits.length);
+        return suits[rndIdx];
+    }
+
+    function getRandomRank() {
+        const rndIdx = Math.floor(Math.random() * ranks.length);
+        return ranks[rndIdx];
     }
