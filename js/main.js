@@ -7,8 +7,7 @@ const masterDeck = buildOriginalDeck();
 
 /*----- state variables -----*/
 
-let winner, shuffledDeck, playerHand, dealerHand, playerScore, dealerScore
-
+let winner, shuffledDeck, playerHand
 /*----- cached elements  -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
 const pResultEl = document.getElementById('p-result');
@@ -50,9 +49,10 @@ function hit() {
 
 function hold() {
     // while dealerScore < 17 then keep drawing a card for that dealer
+    let dealerScore = calculateScore(dealerHand);
     while (dealerScore < 17) {
-        dealerHand.push(shuffleDeck.pop())++;
-        calculateScore(dealerHand)
+        dealerHand.push(shuffledDeck.pop());
+        dealerScore = calculateScore(dealerHand);
     }
     checkWinner()
     render()
