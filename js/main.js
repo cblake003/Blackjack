@@ -83,12 +83,23 @@ const dResultEl = document.getElementById('d-result');
     
     function play() {
         
+        getCard("playerCard1");
+        getCard("dealerCard1");
+        getCard("playerCard2");
+        getCard("dealerCard2");
+
+    }
+
+    function getCard(playerCard) {
         let suitIdx = Math.floor(Math.random() * cards.suit.length);
         let pipIdx = Math.floor(Math.random() * cards.pip.length);
         let rndSuit = cards.suit[suitIdx];
         let rndPip = cards.pip[pipIdx];
 
-        console.log("card." + rndSuit + rndPip);
+        let cardCSSClass = rndSuit + rndPip + " card";
+        console.log(cardCSSClass);
+
+        document.getElementById(playerCard).className = cardCSSClass;
     }
 
     // transfer all state to the DOM so users can visualize it

@@ -56,8 +56,40 @@ button {
     outline: none;
 }
 
+#pcards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dcards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#playerCard1 {
+    height: 800px;
+    width: 600px;
+}
+
+#playerCard2 {
+    height: 800px;
+    width: 600px;
+    
+}
+
 button:hover {
     background-color: purple;
     color: lightpink;
 }
 
+#dealerCard1 {
+    height: 800px;
+    width: 600px;
+}
+
+#dealerCard2 {
+    height: 800px;
+    width: 600px;
+}
