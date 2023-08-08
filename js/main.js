@@ -7,32 +7,47 @@ const masterDeck = buildOriginalDeck();
 
 /*----- state variables -----*/
 
-let winner, shuffledDeck, playerHand
+let winner, shuffledDeck, playerHand, dealerScore, playerScore
 /*----- cached elements  -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
+const playBtn = document.getElementById('playBtn');
 const pResultEl = document.getElementById('p-result');
 const dResultEl = document.getElementById('d-result');
 const playerHandEl = document.getElementById("pcards");
 const dealerHandEl = document.getElementById("dcards");
+const playerScoreEl = document.getElementById('p-score');
+const dealerScoreEl = document.getElementById('d-score');
+const hitBtn = document.getElementById("hit");
+const holdBtn = document.getElementById("hold");
+const resetBtn = document.getElementById('reset');
+const messageEl = document.getElementById('msg');
 
 /*----- event listeners -----*/
 
-document.getElementById('playBtn').addEventListener('click', play);
-document.getElementById("hit").addEventListener("click", hit);
-document.getElementById("hold").addEventListener("click", hold);
+playBtn.addEventListener("click", play);
+hitBtn.addEventListener("click", hit);
+holdBtn.addEventListener("click", hold);
+resetBtn.addEventListener("click", init);
 
 /*----- functions -----*/
 
 init();
-    
+
 function init() {
     shuffledDeck = getShuffledDeck();
     playerHand = [];
     dealerHand = [];
+    dealerScore = 0;
+    playerScore = 0;
     winner = null;
     render();
 }
-    
+
+// function hideButton(btn) {
+    // playBtn.style.display = "none";
+// }
+
+
 function play() {
     // Two cards from the shuffledDeck(splice) or pop() and those two cards should be placed in the playerHand
     playerHand.push(shuffledDeck.pop());
@@ -42,29 +57,46 @@ function play() {
     render();
 }
 
+
 function hit() {
     playerHand.push(shuffledDeck.pop());
+    if (playerScore > 21) {
+        return;
+    }
     render();
+}
+
+function render() {
+    renderDeck(playerHand, playerHandEl);
+    renderDeck(dealerHand, dealerHandEl);
+    renderScore(playerScore, playerScoreEl);
+    renderScore(dealerScore, dealerScoreEl);
+    renderControls();
+    renderMessage();
 }
 
 function hold() {
     // while dealerScore < 17 then keep drawing a card for that dealer
-    let dealerScore = calculateScore(dealerHand);
+    dealerScore = calculateScore(dealerHand);
     while (dealerScore < 17) {
         dealerHand.push(shuffledDeck.pop());
         dealerScore = calculateScore(dealerHand);
     }
-    checkWinner()
+    winner = checkWinner()
     render()
     // every time dealer draws, update dealerScore
 
     // once dealer is done drawing, check for winner
 }
-
     // transfer all state to the DOM so users can visualize it
-function render() {
-    renderDeck(playerHand, playerHandEl);
-    renderDeck(dealerHand, dealerHandEl);
+
+function renderScore(handScore, handScoreEl) {
+    
+    playerScore = calculateScore(playerHand);
+    playerScoreEl.innerHTML = `${playerScore}`;
+
+    let dealerScore = calculateScore(dealerHand);
+    dealerScoreEl.innerHTML = `${dealerScore}`;
 }
 
 function renderDeck(hand, handEl) {
@@ -112,8 +144,67 @@ function calculateScore(hand) {
 }
 
 function checkWinner() {
-    const playerScore = calculateScore(playerHand);
-    const dealerScore = calculateScore(dealerHand);
-    return [playerScore, dealerScore];
-    // if no winner, keep it null
+    playerScore = calculateScore(playerHand);
+    dealerScore = calculateScore(dealerHand);
+
+    if (playerScore > 21) {
+        return 'bust'
+    }
+    
+    else if(dealerScore > 21) {
+        return 'p'
+    }
+
+    else if(playerScore === 21) {
+        return 'pBJ'
+    }
+
+    else if(playerScore === dealerScore) {
+        return 'push'
+    }
+
+    else if(playerScore > dealerScore) {
+        return 'p'
+    }
+
+    else if(dealerScore > playerScore) {
+        return 'd'
+    }
+
+    else if(dealerScore === 21){
+        return 'dBJ'
+    }
+}
+
+function renderMessage() {
+
+    checkWinner()
+    
+    if(winner === 'p') {
+        messageEl.innerText = "You won! Nice job!"
+    }
+    
+    if(winner === 'd') {
+        messageEl.innerText = "Dealer wins..."
+    }
+
+    if(winner === 'pBJ') {
+        messageEl.innerText = "Blackjack! You win!"
+    }
+
+    if(winner === 'dBJ') {
+        messageEl.innerText = "Dealer got Blackjack... tough"
+    }
+
+    if(winner === 'push') {
+        messageEl.innerText = "Push... let's go again?"
+    }
+
+    // if(winner === 'bust') {
+    //     messageEl
+    // }
+}
+
+function renderControls() {
+    resetBtn.style.visibility = winner ? 'visible' : 'hidden'
 }
