@@ -24,6 +24,65 @@ let cardValue = {
     "J": 10,
     "A": [1, 11]
 }
+
+let cardDeck = [
+    's02',
+    's03',
+    's04',
+    's05',
+    's06',
+    's07',
+    's08',
+    's09',
+    's10',
+    'sQ',
+    'sK',
+    'sA',
+    'sJ',
+    'c02',
+    'c03',
+    'c04',
+    'c05',
+    'c06',
+    'c07',
+    'c08',
+    'c09',
+    'c10',
+    'cQ',
+    'cK',
+    'cA',
+    'cJ',
+    'd02',
+    'd03',
+    'd04',
+    'd05',
+    'd06',
+    'd07',
+    'd08',
+    'd09',
+    'd10',
+    'dQ',
+    'dK',
+    'dA',
+    'dJ',
+    'h02',
+    'h02',
+    'h02',
+    'h03',
+    'h04',
+    'h05',
+    'h06',
+    'h07',
+    'h08',
+    'h09',
+    'h10',
+    'hQ',
+    'hK',
+    'hA',
+    'hJ',
+]
+
+
 // const originalDeck = buildOriginalDeck();
 
 // const CARD_LOOKUP = {
@@ -107,11 +166,15 @@ const dResultEl = document.getElementById('d-result');
         scores.playersCurrentHand = playerCard1Value + playerCard2Value;
         scores.dealerCurrentHand = dealerCard1Value + dealerCard2Value;
 
+        deck.
         console.log(scores);
 
     }
 
     function getCard(playerCard, faceDown) {
+        // giving 2 parameters - the card we need and if it needs to be faceDown
+        // the playerCard will give us wither playerCard# or dealerCard#
+        // the facedown true or false will tell us which one to go to the back of the card for should it be the dealer's first card
         let suitIdx = Math.floor(Math.random() * cards.suit.length);
         let pipIdx = Math.floor(Math.random() * cards.pip.length);
         let rndSuit = cards.suit[suitIdx];
@@ -150,6 +213,7 @@ function renderOriginalDeck() {
                 // value: Number(rank) || (rank === 'A' 11 || 1) || (rank === 'K', 'Q' ? 10)
                 // will this set up values correctly or should I make if statements?
             });
+            console.log(deck);
         });
     });
 
