@@ -13,7 +13,7 @@ let cardValue = {
     "02": 2,
     "03": 3,
     "04": 4,
-    "04": 5,
+    "05": 5,
     "06": 6,
     "07": 7,
     "08": 8,
@@ -79,14 +79,15 @@ const dResultEl = document.getElementById('d-result');
 
 	/*----- functions -----*/
 
-    // init();
+    init();
     
     function init() {
         scores = {
-            p: 0,
-            d: 0,
-            t: 0
+            playersCurrentHand: 0,
+            dealerCurrentHand: 0,
+            tie: 0
         };
+
         results = {
         //     // trying to start player off with Blackjack when home screen loads
         //     p: suit[h], rank[Q] + suit[d], rank[A];
@@ -97,24 +98,34 @@ const dResultEl = document.getElementById('d-result');
     }
     
     function play() {
-        
-        getCard("playerCard1");
-        getCard("dealerCard1");
-        getCard("playerCard2");
-        getCard("dealerCard2");
+        // 0 = false, 1 = true for the faceDown parameter; 
+        let playerCard1Value = getCard("playerCard1", 0);
+        let dealerCard1Value = getCard("dealerCard1", 1);
+        let playerCard2Value = getCard("playerCard2", 0);
+        let dealerCard2Value = getCard("dealerCard2", 0);
+
+        scores.playersCurrentHand = playerCard1Value + playerCard2Value;
+        scores.dealerCurrentHand = dealerCard1Value + dealerCard2Value;
+
+        console.log(scores);
 
     }
 
-    function getCard(playerCard) {
+    function getCard(playerCard, faceDown) {
         let suitIdx = Math.floor(Math.random() * cards.suit.length);
         let pipIdx = Math.floor(Math.random() * cards.pip.length);
         let rndSuit = cards.suit[suitIdx];
         let rndPip = cards.pip[pipIdx];
 
         let cardCSSClass = rndSuit + rndPip + " card";
-        console.log(cardCSSClass);
-
+        console.log(playerCard+"-"+cardCSSClass);
+        if (faceDown) {
+            cardCSSClass = "back card";
+        }
+        
         document.getElementById(playerCard).className = cardCSSClass;
+
+        return cardValue[rndPip];
     }
 
     // transfer all state to the DOM so users can visualize it
