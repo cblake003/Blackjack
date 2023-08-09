@@ -20,15 +20,20 @@ main {
     grid-template-rows: 10vmin 10vmin 35vmin 15vmin;
     justify-content: center;
     align-items: center;
+    align-content: space-between;
 }
 
 /* COME BACK TO SIZING THE TITLES IN A BIT */
 h1 {
     font-size: 5vmin;
+    justify-content: center;
+    align-items: center;
 }
 
 h2 {
     font-size: 3vmin;
+    justify-content: center;
+    align-items: center;
 }
 
 /* main *{
@@ -54,6 +59,11 @@ button {
     border-radius: 4vmin;
     font-size: 4vmin;
     outline: none;
+}
+
+#playBtn {
+    justify-content: center;
+    align-items: flex-start;
 }
 
 #pcards {

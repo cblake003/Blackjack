@@ -47,6 +47,14 @@ function init() {
     // playBtn.style.display = "none";
 // }
 
+function render() {
+    renderDeck(playerHand, playerHandEl);
+    renderDeck(dealerHand, dealerHandEl);
+    renderScore(playerScore, playerScoreEl);
+    renderScore(dealerScore, dealerScoreEl);
+    // renderControls(); hide the buttons if you haven't start in this function
+    renderMessage();
+}
 
 function play() {
     // Two cards from the shuffledDeck(splice) or pop() and those two cards should be placed in the playerHand
@@ -59,31 +67,27 @@ function play() {
 
 
 function hit() {
+    if(!playerHand.length) return
     playerHand.push(shuffledDeck.pop());
     if (playerScore > 21) {
         return;
     }
+    checkWinner();
     render();
-}
-
-function render() {
-    renderDeck(playerHand, playerHandEl);
-    renderDeck(dealerHand, dealerHandEl);
-    renderScore(playerScore, playerScoreEl);
-    renderScore(dealerScore, dealerScoreEl);
-    renderControls();
-    renderMessage();
 }
 
 function hold() {
     // while dealerScore < 17 then keep drawing a card for that dealer
+    if(!playerHand.length) return
     dealerScore = calculateScore(dealerHand);
+
     while (dealerScore < 17) {
         dealerHand.push(shuffledDeck.pop());
         dealerScore = calculateScore(dealerHand);
     }
     winner = checkWinner()
-    render()
+    dealerScoreEl.innerHTML = `${dealerScore}`;
+    dealerHandEl.children[0].classList.add("card", card.face);
     // every time dealer draws, update dealerScore
 
     // once dealer is done drawing, check for winner
@@ -96,7 +100,7 @@ function renderScore(handScore, handScoreEl) {
     playerScoreEl.innerHTML = `${playerScore}`;
 
     let dealerScore = calculateScore(dealerHand);
-    dealerScoreEl.innerHTML = `${dealerScore}`;
+    dealerScoreEl.innerHTML = ""
 }
 
 function renderDeck(hand, handEl) {
@@ -106,6 +110,10 @@ function renderDeck(hand, handEl) {
         cardEl.classList.add("card", card.face);
         handEl.append(cardEl);
     })
+    if (dealerHand.length === 2 && handEl === dealerHandEl) {
+        console.log(dealerHandEl)
+        dealerHandEl.children[0].className = "card back";
+    }
 }
 
 function buildOriginalDeck() {
@@ -147,39 +155,42 @@ function checkWinner() {
     playerScore = calculateScore(playerHand);
     dealerScore = calculateScore(dealerHand);
 
-    if (playerScore > 21) {
-        return 'bust'
+    if (playerScore === 21) {
+        return winner = 'pBJ'
+    }
+
+    else if (playerScore > 21) {
+        return winner = 'bust'
     }
     
-    else if(dealerScore > 21) {
-        return 'p'
-    }
-
-    else if(playerScore === 21) {
-        return 'pBJ'
-    }
-
-    else if(playerScore === dealerScore) {
-        return 'push'
-    }
-
     else if(playerScore > dealerScore) {
-        return 'p'
-    }
-
-    else if(dealerScore > playerScore) {
-        return 'd'
+        return winner = 'p'
     }
 
     else if(dealerScore === 21){
-        return 'dBJ'
+        return winner = 'dBJ'
     }
+
+    else if(dealerScore > playerScore) {
+        return winner = 'd'
+    }
+
+    else if(dealerScore > 21) {
+        return winner = 'p'
+    }
+
+    else if(playerScore === dealerScore) {
+        return winner = 'push'
+    }
+
 }
 
 function renderMessage() {
 
-    checkWinner()
-    
+    if(winner === null) {
+        messageEl.innerText = "Let's Play!"
+    }
+
     if(winner === 'p') {
         messageEl.innerText = "You won! Nice job!"
     }
@@ -200,11 +211,13 @@ function renderMessage() {
         messageEl.innerText = "Push... let's go again?"
     }
 
-    // if(winner === 'bust') {
-    //     messageEl
-    // }
+    if(winner === 'bust') {
+        messageEl.innerText = "You busted... ouch"
+    }
 }
 
 function renderControls() {
-    resetBtn.style.visibility = winner ? 'visible' : 'hidden'
+    // resetBtn.style.visibility = winner ? 'visible' : 'hidden'
+    // hitBtn.disabled = 
+    // holdBtn.disabled =
 }
