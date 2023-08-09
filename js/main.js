@@ -39,7 +39,7 @@ function init() {
     dealerHand = [];
     dealerScore = 0;
     playerScore = 0;
-    winner = null;
+    winner = "null";
     render();
 }
 
@@ -58,6 +58,7 @@ function render() {
 
 function play() {
     // Two cards from the shuffledDeck(splice) or pop() and those two cards should be placed in the playerHand
+    if(playerHand.length) return;
     playerHand.push(shuffledDeck.pop());
     dealerHand.push(shuffledDeck.pop());
     playerHand.push(shuffledDeck.pop());
@@ -87,18 +88,17 @@ function hold() {
     }
     winner = checkWinner()
     dealerScoreEl.innerHTML = `${dealerScore}`;
-    dealerHandEl.children[0].classList.add("card", card.face);
     // every time dealer draws, update dealerScore
-
+    
     // once dealer is done drawing, check for winner
 }
-    // transfer all state to the DOM so users can visualize it
+// transfer all state to the DOM so users can visualize it
 
 function renderScore(handScore, handScoreEl) {
     
     playerScore = calculateScore(playerHand);
     playerScoreEl.innerHTML = `${playerScore}`;
-
+    
     let dealerScore = calculateScore(dealerHand);
     dealerScoreEl.innerHTML = ""
 }
@@ -117,19 +117,19 @@ function renderDeck(hand, handEl) {
 }
 
 function buildOriginalDeck() {
-  const deck = [];
-  // Use nested forEach to generate card objects
-  suits.forEach(function(suit) {
-    ranks.forEach(function(rank) {
-      deck.push({
-        // The 'face' property maps to the library's CSS classes for cards
-        face: `${suit}${rank}`,
-        // Setting the 'value' property for game of blackjack, not war
-        value: Number(rank) || (rank === 'A' ? 11 : 10)
-      });
+    const deck = [];
+    // Use nested forEach to generate card objects
+    suits.forEach(function(suit) {
+        ranks.forEach(function(rank) {
+            deck.push({
+                // The 'face' property maps to the library's CSS classes for cards
+                face: `${suit}${rank}`,
+                // Setting the 'value' property for game of blackjack, not war
+                value: Number(rank) || (rank === 'A' ? 11 : 10)
+            });
+        });
     });
-  });
-  return deck;
+    return deck;
 }
 
 function getShuffledDeck() {
@@ -139,7 +139,7 @@ function getShuffledDeck() {
     while (tempDeck.length) {
         const rndIdx = Math.floor(Math.random() * tempDeck.length);
         shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0])
-    // ^ splice is going to return an array of the removed element so that's why we're following that with 0 so that we ONLY get the object, not the array
+        // ^ splice is going to return an array of the removed element so that's why we're following that with 0 so that we ONLY get the object, not the array
     };
     return shuffledDeck;
 }
@@ -154,40 +154,41 @@ function calculateScore(hand) {
 function checkWinner() {
     playerScore = calculateScore(playerHand);
     dealerScore = calculateScore(dealerHand);
-
-    if (playerScore === 21) {
-        return winner = 'pBJ'
+    renderMessage();
+    // dealerHandEl.children[0].classList.add("card", card.face);
+    
+    if (playerScore = 21) {
+        winner = 'pBJ'
     }
 
     else if (playerScore > 21) {
-        return winner = 'bust'
+        winner = 'bust'
     }
     
     else if(playerScore > dealerScore) {
-        return winner = 'p'
+        winner = 'p'
     }
 
-    else if(dealerScore === 21){
-        return winner = 'dBJ'
+    else if(dealerScore = 21){
+        winner = 'dBJ'
     }
 
     else if(dealerScore > playerScore) {
-        return winner = 'd'
+        winner = 'd'
     }
 
     else if(dealerScore > 21) {
-        return winner = 'p'
+        winner = 'p'
     }
 
-    else if(playerScore === dealerScore) {
-        return winner = 'push'
+    else if(playerScore = dealerScore) {
+        winner = 'push'
     }
 
 }
 
 function renderMessage() {
-
-    if(winner === null) {
+    if(winner === 'null') {
         messageEl.innerText = "Let's Play!"
     }
 
@@ -218,6 +219,7 @@ function renderMessage() {
 
 function renderControls() {
     // resetBtn.style.visibility = winner ? 'visible' : 'hidden'
-    // hitBtn.disabled = 
-    // holdBtn.disabled =
+    if (winner = 'null') {
+        resetBtn.style.visibility = 'hidden';
+    }
 }
