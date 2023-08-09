@@ -5,9 +5,13 @@ const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'Q', 'K', '
 
 const masterDeck = buildOriginalDeck();
 
+// const messages = {
+//     "pBJ": "You got Blackjack!"
+// }
 /*----- state variables -----*/
 
-let winner, shuffledDeck, playerHand, dealerScore, playerScore
+let winner, shuffledDeck, playerHand, dealerHand, dealerScore, playerScore
+
 /*----- cached elements  -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
 const playBtn = document.getElementById('playBtn');
@@ -39,7 +43,7 @@ function init() {
     dealerHand = [];
     dealerScore = 0;
     playerScore = 0;
-    winner = "null";
+    winner = null;
     render();
 }
 
@@ -69,9 +73,13 @@ function play() {
 
 function hit() {
     if(!playerHand.length) return
-    playerHand.push(shuffledDeck.pop());
     if (playerScore > 21) {
         return;
+    } else if (playerScore === 21) {
+        hold();
+    }
+    else {
+        playerHand.push(shuffledDeck.pop());
     }
     checkWinner();
     render();
@@ -96,10 +104,9 @@ function hold() {
 
 function renderScore(handScore, handScoreEl) {
     
-    playerScore = calculateScore(playerHand);
-    playerScoreEl.innerHTML = `${playerScore}`;
+    playerScoreEl.innerHTML = `${calculateScore(playerHand)}`;
     
-    let dealerScore = calculateScore(dealerHand);
+    dealerScore = calculateScore(dealerHand);
     dealerScoreEl.innerHTML = ""
 }
 
@@ -154,72 +161,83 @@ function calculateScore(hand) {
 function checkWinner() {
     playerScore = calculateScore(playerHand);
     dealerScore = calculateScore(dealerHand);
-    renderMessage();
+    console.log("hi")
     // dealerHandEl.children[0].classList.add("card", card.face);
+    if (!winner) {
+        winner = null
+    }
     
-    if (playerScore = 21) {
+    else if (playerScore === 21) {
         winner = 'pBJ'
     }
-
+    
     else if (playerScore > 21) {
-        winner = 'bust'
+        winner = 'pbust'
     }
     
     else if(playerScore > dealerScore) {
         winner = 'p'
     }
-
-    else if(dealerScore = 21){
+    
+    else if(dealerScore === 21){
         winner = 'dBJ'
     }
 
+    else if (dealerScore > 21) {
+        winner = 'dbust'
+    }
+    
     else if(dealerScore > playerScore) {
         winner = 'd'
     }
-
+    
     else if(dealerScore > 21) {
         winner = 'p'
     }
-
-    else if(playerScore = dealerScore) {
+    
+    else if(playerScore === dealerScore) {
         winner = 'push'
     }
-
+    renderMessage();
 }
 
 function renderMessage() {
-    if(winner === 'null') {
+    if (winner === null) {
         messageEl.innerText = "Let's Play!"
     }
 
-    if(winner === 'p') {
+    if (winner === 'p') {
         messageEl.innerText = "You won! Nice job!"
     }
     
-    if(winner === 'd') {
+    if (winner === 'd') {
         messageEl.innerText = "Dealer wins..."
     }
 
-    if(winner === 'pBJ') {
+    if (winner === 'pBJ') {
         messageEl.innerText = "Blackjack! You win!"
     }
 
-    if(winner === 'dBJ') {
+    if (winner === 'dBJ') {
         messageEl.innerText = "Dealer got Blackjack... tough"
     }
 
-    if(winner === 'push') {
+    if (winner === 'push') {
         messageEl.innerText = "Push... let's go again?"
     }
 
-    if(winner === 'bust') {
+    if (winner === 'pbust') {
         messageEl.innerText = "You busted... ouch"
+    }
+
+    if (winner === 'dbust') {
+        messageEl.innerText = "Dealer busted! You win!"
     }
 }
 
 function renderControls() {
     // resetBtn.style.visibility = winner ? 'visible' : 'hidden'
-    if (winner = 'null') {
+    if (winner === null) {
         resetBtn.style.visibility = 'hidden';
     }
 }
