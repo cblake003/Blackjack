@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,24 +14,32 @@
         @import url('https://fonts.cdnfonts.com/css/casino');
         </style>
     <main>
-        <h1>Blackjack</h1>
-        <h1 id="msg">LET'S PLAY!</h1>
-        <button id="playBtn">PLAY</button>
-        <h2>Dealer's Hand:</h2>
-            <div id="dcards"></div>
-        <h2>Deck</h2>
-        <h2>Player's Hand:</h2>
-            <div id="pcards">
+        <div id="title">
+            <h1 id="bJ">Blackjack</h1>
+            <h1 id="msg">LET'S PLAY!</h1>
+            <button id="playBtn">PLAY</button>
+        </div>
+        <div id="bothBoxes">
+            <div id="dCardbox">
+                <h2 id="dHand">Dealer's Hand:</h2>
+                <div id="dBorderBox">
+                    <div id="dcards"></div>
+                    <h2 id="d-score"></h2>
+                </div>
             </div>
-        <h2 id="d-score"></h2>
-        <h2 id="t-score"></h2>
-        <h2 id="p-score"></h2>
-        <img id="p-result">
-        <img id="deckCard">
-        <img id="d-result">
-        <button id="hit">HIT</button>
-        <button id="hold">HOLD</button>
-        <button id="reset">RESET</button>
+            <div id="pCardbox">
+                <h2 id="pHand">Player's Hand:</h2>
+                <div id="pBorderBox">
+                    <div id="pcards"></div>
+                    <h2 id="p-score"></h2>
+                </div>
+            </div>
+        </div>
+        <section id="buttons">
+            <button id="hit">HIT</button>
+            <button id="reset">RESET</button>
+            <button id="hold">HOLD</button>
+        </section>
     </main>
 </body>
 </html>

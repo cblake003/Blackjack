@@ -8,81 +8,128 @@ body {
     background-image: url("https://i.imgur.com/JZVkq1R.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 0;
+    margin: auto;
     font-family: "Casino Flat", sans-serif;
     color: white;
-    display: grid;
 }
 
 main {
-    display: grid;
-    grid-template-columns: 35vmin 15vmin 35vmin;
-    grid-template-rows: 10vmin 10vmin 35vmin 15vmin;
-    justify-content: center;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
-    align-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10vmin auto;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: -15vmin;
+}
+
+#bJ {
+    font-size: 10vmin;
+}
+
+#msg {
+    font-size: 6vmin;
 }
 
 /* COME BACK TO SIZING THE TITLES IN A BIT */
-h1 {
-    font-size: 5vmin;
-    justify-content: center;
-    align-items: center;
-}
-
-h2 {
-    font-size: 3vmin;
-    justify-content: center;
-    align-items: center;
-}
-
-/* main *{
+#dCardbox {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-} */
+    width: 40vmin;
+    height: 25vmin;
+}
+
+#pCardbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40vmin;
+    height: 25vmin;
+}
+
+#pBorderBox, #dBorderBox {
+    display: flex;
+    flex-direction: row;
+    border: solid 1vmin;
+    border-color: white;
+    border-radius: 10px;
+    margin-left: 5vmin;
+    margin-right: 5vmin;
+    flex-wrap: wrap;
+    width: 38vmin;
+    height: 43vmin;
+}
+
+#dHand {
+    width: 100%;
+    margin-left: 23vmin;
+}
+
+#pcards, #dcards {
+    width: 100%;
+    margin-left: 3vmin;
+}
 
 #p-score, #d-score {
-    border: 2vmin solid white;
-    border-radius: 5vmin;
+    border: solid 1vmin;
+    border-color: white;
+    border-radius: 10px;
+    height: 6vmin;
+    width: 11vmin;
+    text-align: center;
+    margin-bottom: -40vmin;
+    margin-left: 13vmin;
+}
+
+#bothBoxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20vmin;
+    padding: 9vmin;
+}
+
+#buttons {
     width: 100%;
-    padding: 2vmin;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 33vmin;
 }
 
 button {
     justify-self: center;
-    width: 15vmin;
-    margin: 2vmin;
+    width: 22vmin;
+    margin: auto;
     background-color: lightpink;
     color: purple;
-    border: 1vmin solid black;
+    border: .5vmin solid purple;
     border-radius: 4vmin;
     font-size: 4vmin;
     outline: none;
 }
 
-#playBtn {
-    justify-content: center;
-    align-items: flex-start;
-}
-
-#pcards {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 300px;
-}
-
-#dcards {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 300px;
-}
-
-
-
 button:hover {
     background-color: purple;
     color: lightpink;
+}
+
+#playBtn {
+    justify-content: center;
+    align-items: flex-start;
 }

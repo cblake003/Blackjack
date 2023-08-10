@@ -17,12 +17,12 @@ const shuffledContainer = document.getElementById('shuffled-deck-container');
 const playBtn = document.getElementById('playBtn');
 const pResultEl = document.getElementById('p-result');
 const dResultEl = document.getElementById('d-result');
-const playerHandEl = document.getElementById("pcards");
-const dealerHandEl = document.getElementById("dcards");
+const playerHandEl = document.getElementById('pcards');
+const dealerHandEl = document.getElementById('dcards');
 const playerScoreEl = document.getElementById('p-score');
 const dealerScoreEl = document.getElementById('d-score');
-const hitBtn = document.getElementById("hit");
-const holdBtn = document.getElementById("hold");
+const hitBtn = document.getElementById('hit');
+const holdBtn = document.getElementById('hold');
 const resetBtn = document.getElementById('reset');
 const messageEl = document.getElementById('msg');
 
@@ -73,15 +73,16 @@ function play() {
 
 function hit() {
     if(!playerHand.length) return
-    if (playerScore > 21) {
+    if (calculateScore(playerHand) > 21) {
         return;
-    } else if (playerScore === 21) {
-        hold();
     }
     else {
         playerHand.push(shuffledDeck.pop());
+        if (calculateScore(playerHand) >= 21) {
+            hold();
+        }
     }
-    checkWinner();
+    winner = checkWinner();
     render();
 }
 
@@ -95,6 +96,7 @@ function hold() {
         dealerScore = calculateScore(dealerHand);
     }
     winner = checkWinner()
+    renderMessage();
     dealerScoreEl.innerHTML = `${dealerScore}`;
     // every time dealer draws, update dealerScore
     
@@ -163,42 +165,39 @@ function checkWinner() {
     dealerScore = calculateScore(dealerHand);
     console.log("hi")
     // dealerHandEl.children[0].classList.add("card", card.face);
-    if (!winner) {
-        winner = null
-    }
     
-    else if (playerScore === 21) {
-        winner = 'pBJ'
+    if (playerScore === 21) {
+        return 'pBJ'
     }
     
     else if (playerScore > 21) {
-        winner = 'pbust'
+        return 'pbust'
     }
     
     else if(playerScore > dealerScore) {
-        winner = 'p'
+        return 'p'
     }
     
     else if(dealerScore === 21){
-        winner = 'dBJ'
+        return 'dBJ'
     }
 
     else if (dealerScore > 21) {
-        winner = 'dbust'
+        return 'dbust'
     }
     
     else if(dealerScore > playerScore) {
-        winner = 'd'
+        return 'd'
     }
     
     else if(dealerScore > 21) {
-        winner = 'p'
+        return 'p'
     }
     
     else if(playerScore === dealerScore) {
-        winner = 'push'
+        return 'push'
     }
-    renderMessage();
+
 }
 
 function renderMessage() {
