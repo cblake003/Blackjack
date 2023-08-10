@@ -67,8 +67,8 @@ main {
     border: solid 1vmin;
     border-color: white;
     border-radius: 10px;
-    margin-left: 5vmin;
-    margin-right: -53vmin;
+    margin-left: 19vmin;
+    margin-right: -65vmin;
     flex-wrap: wrap;
     width: 38vmin;
     height: 43vmin;
@@ -76,13 +76,15 @@ main {
 
 #dHand {
     width: 100%;
-    margin-left: 87vmin;
+    margin-left: 79vmin;
+    margin-right: -32vmin;
     font-size: 2vmin;
 }
 
 #pHand {
     width: 50%;
-    margin-right: -67vmin;
+    margin-right: -79vmin;
+    margin-left: 13vmin;
     font-size: 2vmin;
 }
 
@@ -100,6 +102,7 @@ main {
     text-align: center;
     margin-bottom: -40vmin;
     margin-left: 13vmin;
+    font-size: 5vmin;
 }
 
 #bothBoxes {
@@ -108,7 +111,7 @@ main {
     justify-content: flex-start;
     flex-direction: row;
     align-items: center;
-    margin-top: 13vmin;
+    margin-top: 16vmin;
     padding: 9vmin;
 }
 
