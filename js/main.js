@@ -236,7 +236,7 @@ function renderMessage() {
 
 function renderControls() {
     // resetBtn.style.visibility = winner ? 'visible' : 'hidden'
-    if (winner === null) {
+    if (winner = null) {
         resetBtn.style.visibility = 'hidden';
     }
 }

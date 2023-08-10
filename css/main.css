@@ -33,11 +33,13 @@ main {
 }
 
 #bJ {
-    font-size: 10vmin;
+    font-size: 8vmin;
+    margin-top: -4vmin;
 }
 
 #msg {
-    font-size: 6vmin;
+    font-size: 5vmin;
+    margin-top: 3vmin;
 }
 
 /* COME BACK TO SIZING THE TITLES IN A BIT */
@@ -66,7 +68,7 @@ main {
     border-color: white;
     border-radius: 10px;
     margin-left: 5vmin;
-    margin-right: 5vmin;
+    margin-right: -53vmin;
     flex-wrap: wrap;
     width: 38vmin;
     height: 43vmin;
@@ -74,7 +76,14 @@ main {
 
 #dHand {
     width: 100%;
-    margin-left: 23vmin;
+    margin-left: 87vmin;
+    font-size: 2vmin;
+}
+
+#pHand {
+    width: 50%;
+    margin-right: -67vmin;
+    font-size: 2vmin;
 }
 
 #pcards, #dcards {
@@ -99,7 +108,7 @@ main {
     justify-content: flex-start;
     flex-direction: row;
     align-items: center;
-    margin-top: 20vmin;
+    margin-top: 13vmin;
     padding: 9vmin;
 }
 
@@ -109,7 +118,8 @@ main {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 33vmin;
+    margin-top: -11vmin;
+    margin-bottom: -20vmin;
 }
 
 button {
