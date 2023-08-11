@@ -8,7 +8,7 @@ Javascript, HTML, and CSS were used in the creating of this game.
 
 User opens Blackjack application
 
-<img src="https://imgur.com/d58I6sZ">
+<img src="//imgur.com/d58I6sZ">
 
 Invoke init() function
 Make sure init() renders
