@@ -4,7 +4,7 @@ As a software engineering fellow with General Assembly, our first project was to
 
 Javascript, HTML, and CSS were used in the creating of this game.
 
-<h1>PseudoCode</h1>
+<h1>Game Play</h1>
 
 User opens Blackjack application
 
@@ -35,7 +35,7 @@ Game renders player's hand with 2 cards face up and dealer's hand with one card 
 <img src="https://imgur.com/LWordG9">
 
 
-    Player1 receives two random cards using the shuffleDeck function. 
+Player1 receives two random cards using the shuffleDeck function. 
 
 There is an implicit assumption that the dealer will STAY if Dealer's score is 17 or higher. There an If statement for "If dealer's score > 17, STOP".
 
@@ -54,7 +54,6 @@ another if statement.
 
 If dealer flips second card and does not reach 21 before hitting 17 or surpasses 21, then the dealer loses.
 
-    
 I created a while loop to keep the dealer hitting until it hits 17 or more.
 
 If dealer hits 21 as well, it results in a "push" (or tie) and no one wins or loses.
@@ -62,8 +61,8 @@ If dealer hits 21 as well, it results in a "push" (or tie) and no one wins or lo
 Reset button will enable once the round is over.
 <img src="https://imgur.com/QQwYWxq">
 
-Click here to play Blackjack  <a href="https://cblake003.github.io/Blackjack/">
+Click <a href="https://cblake003.github.io/Blackjack/">here</a> to play Blackjack:  
 
-Next Steps:
+<h1>Next Steps:</h1>
 
 I plan to update this game with several ideas. I'd like to give players the option to choose the value of their Ace between 1 or 11. I'd like to give the cards animation flips. I'd also like to turn the dealer's facedown card back over so the player can see the face.
