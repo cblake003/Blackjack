@@ -62,7 +62,7 @@ If dealer hits 21 as well, it results in a "push" (or tie) and no one wins or lo
 Reset button will enable once the round is over.
 <img src="https://imgur.com/QQwYWxq">
 
-Click here to play Blackjack!
+Click here to play Blackjack  <a href="https://cblake003.github.io/Blackjack/">
 
 Next Steps:
 
