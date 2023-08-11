@@ -8,16 +8,7 @@ Javascript, HTML, and CSS were used in the creating of this game.
 
 User opens Blackjack application
 
-<img src="https://imgur.com/d58I6sZ" alt="Start Game Screenshot"/>
-
-Invoke init() function
-Make sure init() renders
-Use render() function
-        Put renderCards()
-        Put renderBtn() ??
-        Put renderShuffleDeck ??
-User is greeted with Home Screen
-    renderHomeScreen()
+<img src="https://imgur.com/d58I6sZ"/>
 
 User presses "PLAY" to begin game.
 
