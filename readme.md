@@ -12,13 +12,13 @@ User opens Blackjack application
 
 User presses "PLAY" to begin game.
 
-<img src="https://imgur.com/Z24Jv55">
+![Imgur](https://i.imgur.com/Z24Jv55.jpg)
 
 The deck is shuffled and the player and dealer are dealt two cards.
 
 The player's hand will have 2 cards that are face up, and the dealer's hand will have one card face up and one card face down. The player will be shown their score while the dealer's score is hidden.
 
-<img src="https://imgur.com/LWordG9">
+![Imgur](https://i.imgur.com/LWordG9.jpg)
 
 The player may either HIT to receive another card, or HOLD to stay with only their two current cards and allow the dealer to take its turn.
 
@@ -28,11 +28,11 @@ There is an implicit assumption that the dealer will HOLD if Dealer's score is 1
 
 Dealer must keep hitting if score is under 17 regardless if Dealer busts.
 
-<img src="https://imgur.com/V97yJia">
+![Imgur](https://i.imgur.com/9LBvlxn.jpg)
 
 If player chooses Hit, a random card from the deck will come out of the deck and add to the player's score.
 
-<img src="https://imgur.com/UQFENQ8">
+![Imgur](https://i.imgur.com/UQFENQ8.png)
     
 If the player's score is under 21, player can choose Hit or Hold again
 another if statement.
@@ -41,15 +41,15 @@ If the player reaches 21, then the player will have effectively reached the high
 
 If the dealer hits 21 as well, it results in a "push" (or tie) and no one wins or loses.
 
-<img src="https://imgur.com/87aYQhn">
+![Imgur](https://i.imgur.com/87aYQhn.png)
 
 If the player does not surpass 21 and does not reach 21, and the dealer has a higher score than the player without surpassing 21 points, then the dealer wins.
 
-<img src="https://imgur.com/QQwYWxq">
+![Imgur](https://i.imgur.com/QQwYWxq.jpg)
 
 The reset button will be enabled once the round is over to set up a new game, and the new game can be started with the "PLAY" button.
 
-<img src="https://imgur.com/QQwYWxq">
+![Imgur](https://i.imgur.com/oK5JyYf.jpg)
 
 Click <a href="https://cblake003.github.io/Blackjack/">here</a> to play Blackjack:  
 
