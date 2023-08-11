@@ -5,9 +5,6 @@ const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'Q', 'K', '
 
 const masterDeck = buildOriginalDeck();
 
-// const messages = {
-//     "pBJ": "You got Blackjack!"
-// }
 /*----- state variables -----*/
 
 let winner, shuffledDeck, playerHand, dealerHand, dealerScore, playerScore
@@ -47,21 +44,16 @@ function init() {
     render();
 }
 
-// function hideButton(btn) {
-    // playBtn.style.display = "none";
-// }
 
 function render() {
     renderDeck(playerHand, playerHandEl);
     renderDeck(dealerHand, dealerHandEl);
     renderScore(playerScore, playerScoreEl);
     renderScore(dealerScore, dealerScoreEl);
-    // renderControls(); hide the buttons if you haven't start in this function
     renderMessage();
 }
 
 function play() {
-    // Two cards from the shuffledDeck(splice) or pop() and those two cards should be placed in the playerHand
     if(playerHand.length) return;
     playerHand.push(shuffledDeck.pop());
     dealerHand.push(shuffledDeck.pop());
@@ -87,10 +79,11 @@ function hit() {
 }
 
 function hold() {
-    // while dealerScore < 17 then keep drawing a card for that dealer
+
     if(!playerHand.length) return
     dealerScore = calculateScore(dealerHand);
 
+    
     while (dealerScore < 17) {
         dealerHand.push(shuffledDeck.pop());
         dealerScore = calculateScore(dealerHand);
@@ -98,11 +91,8 @@ function hold() {
     winner = checkWinner()
     renderMessage();
     dealerScoreEl.innerHTML = `${dealerScore}`;
-    // every time dealer draws, update dealerScore
-    
-    // once dealer is done drawing, check for winner
+    renderDeck(dealerHand, dealerHandEl);
 }
-// transfer all state to the DOM so users can visualize it
 
 function renderScore(handScore, handScoreEl) {
     
@@ -114,26 +104,23 @@ function renderScore(handScore, handScoreEl) {
 
 function renderDeck(hand, handEl) {
     handEl.innerHTML = "";
+    console.log(hand);
     hand.forEach(card => {
         const cardEl = document.createElement("div");
         cardEl.classList.add("card", card.face);
         handEl.append(cardEl);
     })
     if (dealerHand.length === 2 && handEl === dealerHandEl) {
-        console.log(dealerHandEl)
         dealerHandEl.children[0].className = "card back";
     }
 }
 
 function buildOriginalDeck() {
     const deck = [];
-    // Use nested forEach to generate card objects
     suits.forEach(function(suit) {
         ranks.forEach(function(rank) {
             deck.push({
-                // The 'face' property maps to the library's CSS classes for cards
                 face: `${suit}${rank}`,
-                // Setting the 'value' property for game of blackjack, not war
                 value: Number(rank) || (rank === 'A' ? 11 : 10)
             });
         });
@@ -143,12 +130,10 @@ function buildOriginalDeck() {
 
 function getShuffledDeck() {
     const tempDeck = [...masterDeck];
-    // This is making a shallow copy of the original array. It's not copying over the actual thing, it's point to the references so we're grabbing the same copy. All we need are references because we can shuffle the references and then we can get that Shuffled Deck
     const shuffledDeck = [];
     while (tempDeck.length) {
         const rndIdx = Math.floor(Math.random() * tempDeck.length);
         shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0])
-        // ^ splice is going to return an array of the removed element so that's why we're following that with 0 so that we ONLY get the object, not the array
     };
     return shuffledDeck;
 }
@@ -164,7 +149,6 @@ function checkWinner() {
     playerScore = calculateScore(playerHand);
     dealerScore = calculateScore(dealerHand);
     console.log("hi")
-    // dealerHandEl.children[0].classList.add("card", card.face);
     
     if (playerScore === 21) {
         return 'pBJ'
@@ -235,7 +219,6 @@ function renderMessage() {
 }
 
 function renderControls() {
-    // resetBtn.style.visibility = winner ? 'visible' : 'hidden'
     if (winner = null) {
         resetBtn.style.visibility = 'hidden';
     }
