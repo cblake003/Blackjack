@@ -24,9 +24,9 @@ The player may either HIT to receive another card, or HOLD to stay with only the
 
 If the player chooses Hold, no more cards will be dealt to the player and the dealer's turn will ensue. The dealer will continue to take cards until the dealer score reaches a minimum of 17.
 
-There is an implicit assumption that the dealer will HOLD if Dealer's score is 17 or higher. 
+There is an implicit assumption that the dealer will HOLD if the dealer's score is 17 or higher. 
 
-Dealer must keep hitting if score is under 17 regardless if Dealer busts.
+The dealer must keep hitting if score is under 17 regardless if Dealer busts.
 
 ![Imgur](https://i.imgur.com/9LBvlxn.jpg)
 
@@ -34,8 +34,7 @@ If player chooses Hit, a random card from the deck will come out of the deck and
 
 ![Imgur](https://i.imgur.com/UQFENQ8.png)
     
-If the player's score is under 21, player can choose Hit or Hold again
-another if statement.
+If the player's score is under 21, player can choose Hit or Hold again.
 
 If the player reaches 21, then the player will have effectively reached the highest scoring possible, aka Blackjack. If in the same game, the dealer flips their second card and does not reach 21 before hitting 17 or surpasses 21, then the dealer loses.
 
@@ -51,7 +50,7 @@ The reset button will be enabled once the round is over to set up a new game, an
 
 ![Imgur](https://i.imgur.com/oK5JyYf.jpg)
 
-Click <a href="https://cblake003.github.io/Blackjack/">here</a> to play Blackjack:  
+Click <a href="https://cblake003.github.io/Blackjack/">here</a> to play my version of Blackjack!
 
 <h1>Next Steps:</h1>
 
