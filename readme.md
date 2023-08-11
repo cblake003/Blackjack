@@ -8,7 +8,7 @@ Javascript, HTML, and CSS were used in the creating of this game.
 
 User opens Blackjack application
 
-<img src="https://imgur.com/a/u8wqRN2">
+<img src="https://imgur.com/d58I6sZ">
 
 Invoke init() function
 Make sure init() renders
@@ -23,46 +23,45 @@ User presses "PLAY" to begin game.
 
 <img src="https://imgur.com/Z24Jv55">
 
-    Create PLAY Button will be in HTML and styled in CSS.
-    const playBtn = document.getElementById('playBtn');
+The deck is shuffled and the player and dealer are dealt two cards.
 
-Deck is shuffled
-    
-    function shuffleDeck() {}
-
-Game renders player's hand with 2 cards face up and dealer's hand with one card face up and one card face down. Player will be shown their score while the dealer's score is hidden.
+The player's hand will have 2 cards that are face up, and the dealer's hand will have one card face up and one card face down. The player will be shown their score while the dealer's score is hidden.
 
 <img src="https://imgur.com/LWordG9">
 
-
-Player1 receives two random cards using the shuffleDeck function. 
-
-There is an implicit assumption that the dealer will STAY if Dealer's score is 17 or higher. There an If statement for "If dealer's score > 17, STOP".
-
-Dealer must keep hitting if score is under 17 regardless if Dealer busts.
+The player may either HIT to receive another card, or HOLD to stay with only their two current cards and allow the dealer to take its turn.
 
 If the player chooses Hold, no more cards will be dealt to the player and the dealer's turn will ensue. The dealer will continue to take cards until the dealer score reaches a minimum of 17.
+
+There is an implicit assumption that the dealer will HOLD if Dealer's score is 17 or higher. 
+
+Dealer must keep hitting if score is under 17 regardless if Dealer busts.
 
 <img src="https://imgur.com/V97yJia">
 
 If player chooses Hit, a random card from the deck will come out of the deck and add to the player's score.
 
-<img src="https://imgur.com/fFdVEtV>">
+<img src="https://imgur.com/UQFENQ8">
     
-If player's score is under 21, player can choose Hit or Hold again
+If the player's score is under 21, player can choose Hit or Hold again
 another if statement.
 
-If dealer flips second card and does not reach 21 before hitting 17 or surpasses 21, then the dealer loses.
+If the player reaches 21, then the player will have effectively reached the highest scoring possible, aka Blackjack. If in the same game, the dealer flips their second card and does not reach 21 before hitting 17 or surpasses 21, then the dealer loses.
 
-I created a while loop to keep the dealer hitting until it hits 17 or more.
+If the dealer hits 21 as well, it results in a "push" (or tie) and no one wins or loses.
 
-If dealer hits 21 as well, it results in a "push" (or tie) and no one wins or loses.
+<img src="https://imgur.com/87aYQhn">
 
-Reset button will enable once the round is over.
+If the player does not surpass 21 and does not reach 21, and the dealer has a higher score than the player without surpassing 21 points, then the dealer wins.
+
+<img src="https://imgur.com/QQwYWxq">
+
+The reset button will be enabled once the round is over to set up a new game, and the new game can be started with the "PLAY" button.
+
 <img src="https://imgur.com/QQwYWxq">
 
 Click <a href="https://cblake003.github.io/Blackjack/">here</a> to play Blackjack:  
 
 <h1>Next Steps:</h1>
 
-I plan to update this game with several ideas. I'd like to give players the option to choose the value of their Ace between 1 or 11. I'd like to give the cards animation flips. I'd also like to turn the dealer's facedown card back over so the player can see the face.
+I plan to update this game with several ideas. I'd like to give players the option to choose the value of their Ace between 1 or 11.  I'll give the cards animation flips and include a shuffle deck animation when the game starts. I will also be adding a bet option so the user can start with a certain amount of money and play until their bet runs out.
